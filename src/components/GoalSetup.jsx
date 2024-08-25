@@ -184,7 +184,7 @@ const GoalSetup = () => {
         </div>
       )}
 
-{step === "three" && (
+{/* {step === "three" && (
   <div>
     <img
             className="back"
@@ -213,8 +213,12 @@ const GoalSetup = () => {
             Continue
           </Button>
   </div>
+)} */}
+{step === "three" && (
+  <div>
+    <h2>Step 3 Placeholder</h2>
+  </div>
 )}
-
 
 {step === "four" && (
   <div className='d-flex justify-content-center align-items-center flex-column' style={{height: '60vh'}}>
