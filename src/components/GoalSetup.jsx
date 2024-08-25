@@ -184,13 +184,13 @@ const GoalSetup = () => {
         </div>
       )}
 
-{/* {step === "three" && (
+{step === "three" && (
   <div>
     <img
-            className="back"
-            src={Vector}
-            alt="backbutton"
-            onClick={() => setStep("two")}
+      className="back"
+       src={Vector}
+      alt="backbutton"
+        onClick={() => setStep("two")}
           />
 
           <h2>Let's set up your secondary goals</h2>
@@ -212,11 +212,6 @@ const GoalSetup = () => {
           >
             Continue
           </Button>
-  </div>
-)} */}
-{step === "three" && (
-  <div>
-    <h2>Step 3 Placeholder</h2>
   </div>
 )}
 
