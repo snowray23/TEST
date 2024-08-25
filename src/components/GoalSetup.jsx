@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/esm/Button';
 const GoalSetup = () => {
   const location = useLocation();
   const { userInfo, financialInfo, remainingBalance } = location.state;
-  // console.log(userInfo, financialInfo, remainingBalance);
+  console.log(userInfo, financialInfo, remainingBalance);
 
  
   const [selectedGoals, setSelectedGoals] = useState([]);
@@ -49,12 +49,13 @@ const GoalSetup = () => {
 
   const handleRadioChange = id => {
     setRadioGoalSelected(true)
+    setPrimaryGoalAmount('')
 
     const updatedGoals = selectedGoals.map(item => {
       if(item.id === id) {
           return {...item, isPrimary: true}
       } else {
-        return {...item, isPrimary: false}
+        return {...item, isPrimary: false, amount: ''}
       }
       return item
     })
@@ -66,7 +67,18 @@ const GoalSetup = () => {
     const updatedGoals = selectedGoals.map(item => {
       if(item.isPrimary) {
           return {...item, amount: e.target.value}
-      } 
+      }
+      return item
+    })
+    setSelectedGoals(updatedGoals)
+  }
+
+  const handleSecondaryGoals = (e, id) => {
+    
+    const updatedGoals = selectedGoals.map(item => {
+      if(item.id === id) {
+          return {...item, amount: e.target.value}
+      }
       return item
     })
     setSelectedGoals(updatedGoals)
@@ -171,6 +183,53 @@ const GoalSetup = () => {
           </Button>
         </div>
       )}
+
+{step === "three" && (
+  <div>
+    <img
+            className="back"
+            src={Vector}
+            alt="backbutton"
+            onClick={() => setStep("two")}
+          />
+
+          <h2>Let's set up your secondary goals</h2>
+          {selectedGoals.filter(item => !item.isPrimary).map(secondary => (
+            <div key={secondary.id} className='secondary-goal-container mt-4'>
+              <div className='secondary-goal d-flex p-4 align-items-center'>
+                <div className='me-3'><img src={secondary.icon} alt={secondary.text} /></div>
+                <div>{secondary.text}</div>
+              </div>
+              <h2>How much would you like to save?</h2>
+              <input type="number" placeholder='$0.00' className='secondary-amount' onChange={(e) => handleSecondaryGoals(e, secondary.id)}/>
+            </div>
+          ))}
+
+          <Button
+            className="btn btn-green w-100"
+            disabled={selectedGoals.filter(item => !item.isPrimary).length + 1 !== selectedGoals.filter(item => item.amount).length}
+            onClick={() => setStep("four")}
+          >
+            Continue
+          </Button>
+  </div>
+)}
+
+
+{step === "four" && (
+  <div className='d-flex justify-content-center align-items-center flex-column' style={{height: '60vh'}}>
+  <h2>You're all set! </h2>
+
+  <Button
+            className="btn btn-green w-100"
+          >
+            Take me to my dashboard
+          </Button>
+  </div>
+)}
+
+
+
     </div>
   );
 };
