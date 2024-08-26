@@ -187,10 +187,10 @@ const GoalSetup = () => {
 {step === "three" && (
   <div>
     <img
-            className="back"
-            src={Vector}
-            alt="backbutton"
-            onClick={() => setStep("two")}
+      className="back"
+       src={Vector}
+      alt="backbutton"
+        onClick={() => setStep("two")}
           />
 
           <h2>Let's set up your secondary goals</h2>
@@ -214,7 +214,6 @@ const GoalSetup = () => {
           </Button>
   </div>
 )}
-
 
 {step === "four" && (
   <div className='d-flex justify-content-center align-items-center flex-column' style={{height: '60vh'}}>
